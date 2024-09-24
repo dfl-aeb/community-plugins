@@ -62,7 +62,7 @@ export const CopilotPage = () => {
         <StyledContent>
           <SharedDateRangeProvider>
             <TabbedCard>
-              <CardTab label="Enterprise">
+              <CardTab label="Enterprise/Orgs">
                 <Metrics Cards={EnterpriseCards} Charts={EnterpriseCharts} />
               </CardTab>
               <CardTab label="Languages">

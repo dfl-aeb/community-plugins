@@ -46,3 +46,14 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+copilot:
+  scheduler:
+    frequency:
+      hours: 2
+    timeout:
+      minutes: 2
+    initialDelay:
+      seconds: 15
+  host: github.com
+  org: my-organisation

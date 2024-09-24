@@ -90,7 +90,10 @@ copilot:
       seconds: 15
   host: YOUR_GITHUB_HOST_HERE
   enterprise: YOUR_ENTERPRISE_NAME_HERE
+  org: YOUR_ORGANIZATION_NAME_HERE
 ```
+
+The plugin expects as default an `enterprise` config key. If you don't have a GitHub Enterprise license, but still want to see your organization's data, you can use the `org` key instead. It will take precedence over the `enterprise` key, if both are present.
 
 ### Generating GitHub Copilot Token
 
@@ -98,6 +101,7 @@ To generate an access token for using GitHub Copilot:
 
 - Visit [Generate GitHub Access Token](https://github.com/settings/tokens).
 - Follow the instructions to create a new token with the `read:enterprise` scope.
+- For access to organisations, add the `read:org` scope.
 
 ### API Documentation
 
