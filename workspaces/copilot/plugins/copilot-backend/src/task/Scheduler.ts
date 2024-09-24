@@ -38,8 +38,14 @@ export default class Scheduler {
     try {
       this.options.logger.info('Starting Github Copilot Processor');
 
-      const copilotMetrics =
-        await this.options.api.getCopilotUsageDataForEnterprise();
+      let copilotMetrics;
+      if (this.options.config.getOptionalString('copilot.org')) {
+        copilotMetrics =
+          await this.options.api.getCopilotUsageDataForOrganisations();
+      } else {
+        copilotMetrics =
+          await this.options.api.getCopilotUsageDataForEnterprise();
+      }
       this.options.logger.info(`Fetched ${copilotMetrics.length} metrics`);
 
       const lastDay = await this.options.db.getMostRecentDayFromMetrics();

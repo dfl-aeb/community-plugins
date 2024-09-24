@@ -22,6 +22,7 @@ import { getGithubInfo, GithubInfo } from '../utils/GithubUtils';
 
 interface GithubApi {
   getCopilotUsageDataForEnterprise: () => Promise<Metric[]>;
+  getCopilotUsageDataForOrganisations: () => Promise<Metric[]>;
 }
 
 export class GithubClient implements GithubApi {
@@ -33,7 +34,12 @@ export class GithubClient implements GithubApi {
   }
 
   async getCopilotUsageDataForEnterprise(): Promise<Metric[]> {
-    const path = `/enterprises/${this.props.enterprise}/copilot/usage`;
+    const path = `/enterprise/${this.props.enterprise}/copilot/usage`;
+    return this.get(path);
+  }
+  
+  async getCopilotUsageDataForOrganisations(): Promise<Metric[]> {
+    const path = `/orgs/${this.props.org}/copilot/usage`;
     return this.get(path);
   }
 

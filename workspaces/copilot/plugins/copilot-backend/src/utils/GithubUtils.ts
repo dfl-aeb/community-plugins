@@ -24,7 +24,8 @@ import {
 export type GithubInfo = {
   credentials: GithubCredentials;
   apiBaseUrl: string;
-  enterprise: string;
+  enterprise?: string;
+  org?: string;
 };
 
 export const getGithubInfo = async (config: Config): Promise<GithubInfo> => {
@@ -34,13 +35,14 @@ export const getGithubInfo = async (config: Config): Promise<GithubInfo> => {
 
   const host = config.getString('copilot.host');
   const enterprise = config.getString('copilot.enterprise');
+  const org = config.getString('copilot.org');
 
   if (!host) {
     throw new Error('The host configuration is missing from the config.');
   }
 
-  if (!enterprise) {
-    throw new Error('The enterprise configuration is missing from the config.');
+  if (!enterprise && !org) {
+    throw new Error('Neither enterprise nor org configuration is provided.');
   }
 
   const githubConfig = integrations.github.byHost(host)?.config;
@@ -65,5 +67,6 @@ export const getGithubInfo = async (config: Config): Promise<GithubInfo> => {
     apiBaseUrl,
     credentials,
     enterprise,
+    org,
   };
 };
