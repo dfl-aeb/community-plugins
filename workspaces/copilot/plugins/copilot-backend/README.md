@@ -15,7 +15,7 @@ To configure the plugin using the new backend system:
 
    const backend = createBackend();
 
-   backend.add(import('@backstage-community/plugin-copilot'));
+   backend.add(import('@backstage-community/plugin-copilot-backend'));
 
    backend.start();
    ```
@@ -24,17 +24,17 @@ To configure the plugin using the new backend system:
 
 To install the plugin using the old method:
 
-1. Add the `@backstage-community/plugin-copilot` package to your backend:
+1. Add the `@backstage-community/plugin-copilot-backend` package to your backend:
 
    ```sh
-   yarn --cwd packages/backend add @backstage-community/plugin-copilot
+   yarn --cwd packages/backend add @backstage-community/plugin-copilot-backend
    ```
 
 2. In your `packages/backend/src/plugins/copilot.ts` file, add the following code:
 
    ```typescript
    import { TaskScheduleDefinition } from '@backstage/backend-tasks';
-   import { createRouterFromConfig } from '@backstage-community/plugin-copilot';
+   import { createRouterFromConfig } from '@backstage-community/plugin-copilot-backend';
 
    export default async function createPlugin(): Promise<void> {
      const schedule: TaskScheduleDefinition = {
